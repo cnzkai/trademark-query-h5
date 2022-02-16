@@ -7,7 +7,7 @@
 		$headers = array();
 		array_push($headers, "X-Bce-Signature:AppCode/" . $appCode);
 		array_push($headers, "Content-Type".":"."application/json;charset=UTF-8");
-		$url = "http://gwgp-yytgq5tciko.n.bdcloudapi.com/".$query;
+		$url = "http://qdtm.api.bdymkt.com/".$query;
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_setopt($curl, CURLOPT_URL, $url);
@@ -16,7 +16,11 @@
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_HEADER, false);
 		$data = curl_exec($curl);
+		$header = curl_getinfo($curl);
 		curl_close($curl);
+		if($header['http_code'] != 200){
+			die("<h1>错误,请确认appCode是否正确?</h1>");
+		}
 		$ret = json_decode($data);
 		if($ret->code != 200){
 			die("<h1>".$ret->msg."</h1>");
