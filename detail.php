@@ -44,10 +44,6 @@
 <?php
 	require_once("api.php");
 	$id = $_GET["id"];
-	$keyword = $_GET["keyword"];
-	$type = $_GET["type"];
-	$page = $_GET["page"];
-
 	if(empty($id)){
 		die("<h1>ID不正确!</h1>");
 	}
